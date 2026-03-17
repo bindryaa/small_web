@@ -1,0 +1,1 @@
+document.getElementById("toGalleryBtn").addEventListener("click", () => showScreen("gallery"));

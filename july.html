@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Aagy ❤️</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      color: #fff;
+      background:
+        radial-gradient(circle at top, #24133a 0%, #0f1020 45%, #06070d 100%);
+    }
+
+    .screen {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    .card {
+      width: min(92vw, 840px);
+      max-height: 92vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 24px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #ffe4f1;
+    }
+
+    .subtitle {
+      color: #dfd6ea;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    .btn-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 12px 22px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+    }
+
+    .primary {
+      background: linear-gradient(135deg, #ff5ea1, #ff94c8);
+      color: white;
+      box-shadow: 0 10px 24px rgba(255, 94, 161, 0.3);
+    }
+.gift-box {
+  width: 150px;
+  height: 150px;
+  margin: 20px auto;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ff5ea1, #ff9cca);
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255, 94, 161, 0.4);
+  animation: pulse 2s infinite;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gift-box::before {
+  content: "";
+  position: absolute;
+  left: 63px;
+  top: 0;
+  width: 24px;
+  height: 100%;
+  background: #fff1f7;
+  border-radius: 8px;
+}
+
+.gift-box::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 63px;
+  width: 100%;
+  height: 24px;
+  background: #fff1f7;
+  border-radius: 8px;
+}
+
+.gift-box:hover {
+  transform: scale(1.05) rotate(2deg);
+}
+
+.gift-box.open {
+  box-shadow: 0 0 40px rgba(255, 94, 161, 0.8);
+  transform: scale(1.08);
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 20px rgba(255, 94, 161, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(255, 94, 161, 0.8); }
+  100% { box-shadow: 0 0 20px rgba(255, 94, 161, 0.4); }
+}
+
+.gift-photo {
+  margin-top: 18px;
+  display: none;
+  animation: fadeIn 0.6s ease;
+}
+
+.gift-photo.show {
+  display: block;
+}
+
+.gift-photo img {
+  width: min(100%, 320px);
+  border-radius: 16px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shake {
+  0% { transform: rotate(0); }
+  25% { transform: rotate(2deg); }
+  50% { transform: rotate(-2deg); }
+  75% { transform: rotate(2deg); }
+  100% { transform: rotate(0); }
+}
+
+    .secondary {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.16);
+      color: white;
+    }
+
+    /* Letter screen */
+    .letter-paper {
+      width: min(100%, 540px);
+      margin: 18px auto 0;
+      background: linear-gradient(180deg, #fff8fc, #fff0f6);
+      color: #2a2131;
+      border-radius: 18px;
+      padding: 20px;
+      text-align: left;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.22);
+    }
+
+    .letter-paper h3 {
+      color: #a92f6e;
+      margin-bottom: 12px;
+      font-size: 1.7rem;
+    }
+
+    .letter-content {
+      max-height: 280px;
+      overflow-y: auto;
+      line-height: 1.8;
+      padding-right: 6px;
+    }
+
+    .letter-content p {
+      margin-bottom: 12px;
+    }
+
+    /* Gallery */
+    .main-photo {
+      width: min(100%, 540px);
+      max-height: 430px;
+      height: auto;
+      object-fit: contain;
+      border-radius: 18px;
+      display: block;
+      margin: 16px auto 14px;
+      border: 2px solid rgba(255,255,255,0.12);
+      box-shadow: 0 14px 35px rgba(0,0,0,0.28);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .thumb-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 12px;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .thumb {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 14px;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: 0.2s ease;
+      background: rgba(255,255,255,0.06);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    }
+
+    .thumb:hover {
+      transform: scale(1.03);
+    }
+
+    .thumb.active-thumb {
+      border-color: #ff79b5;
+      box-shadow: 0 0 0 4px rgba(255,121,181,0.18);
+    }
+
+    /* Gift */
+    .gift-box {
+      width: 150px;
+      height: 150px;
+      margin: 20px auto;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #ff5ea1, #ff9cca);
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 16px 30px rgba(255,94,161,0.28);
+    }
+
+    .gift-box::before {
+      content: "";
+      position: absolute;
+      left: 63px;
+      top: 0;
+      width: 24px;
+      height: 100%;
+      background: #fff1f7;
+    }
+
+    .gift-box::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 63px;
+      width: 100%;
+      height: 24px;
+      background: #fff1f7;
+    }
+
+    .gift-message {
+      margin-top: 18px;
+      color: #ffe5f0;
+      line-height: 1.7;
+      display: none;
+    }
+
+    .gift-message.show {
+      display: block;
+    }
+
+    /* Question */
+    .question-box {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      margin-top: 20px;
+    }
+
+    #yesBtn, #noBtn {
+      position: absolute;
+      min-width: 120px;
+    }
+
+    #yesBtn {
+      left: calc(50% - 140px);
+      top: 80px;
+    }
+
+    #noBtn {
+      left: calc(50% + 20px);
+      top: 80px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.16);
+      color: white;
+    }
+
+    /* Final */
+    .final-card {
+      overflow: hidden;
+      min-height: 520px;
+    }
+
+    .final-photo {
+      width: min(100%, 390px);
+      max-height: 300px;
+      height: auto;
+      object-fit: contain;
+      border-radius: 18px;
+      display: block;
+      margin: 18px auto 14px;
+      box-shadow: 0 16px 34px rgba(0,0,0,0.28);
+      background: rgba(255,255,255,0.05);
+      position: relative;
+      z-index: 2;
+    }
+
+    .final-text {
+      color: #ffe6f1;
+      line-height: 1.8;
+      font-size: 1.08rem;
+      position: relative;
+      z-index: 2;
+    }
+    .gift-photo {
+  margin-top: 18px;
+  display: none;
+  animation: fadeIn 0.6s ease;
+}
+
+.gift-photo img {
+  width: min(100%, 320px);
+  border-radius: 16px;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.3);
+}
+
+.gift-photo.show {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+    .sticker {
+      position: absolute;
+      width: 220px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 1;
+      opacity: 0.95;
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,0.25));
+      pointer-events: none;
+    }
+
+    @media (max-width: 700px) {
+      .card {
+        padding: 18px 14px;
+      }
+
+      .main-photo {
+        max-height: 300px;
+      }
+
+      .thumb-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .thumb {
+        height: 150px;
+      }
+
+      .final-photo {
+        max-height: 240px;
+      }
+
+      .question-box {
+        height: 270px;
+      }
+
+      #yesBtn {
+        left: calc(50% - 65px);
+        top: 70px;
+      }
+
+      #noBtn {
+        left: calc(50% - 65px);
+        top: 140px;
+      }
+      .gift-box.open {
+  box-shadow: 0 0 40px rgba(255,94,161,0.8);
+}
+
+      .sticker {
+        width: 88px;
+        right: 10px;
+        bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SCREEN 1 -->
+  <section class="screen active" id="letterScreen">
+    <div class="card">
+      <h1>For Aagy 💌</h1>
+      <p class="subtitle" id="typingSubtitle"></p>
+
+      <div class="letter-paper">
+        <div class="letter-content">
+          <p>Kino zaluudaa tsergiin bayriin mend hurgey!</p>
+
+          <p>
+            Hairn chamaaraa maaash ih baharhdag shuu, ene saihan zaluutai
+            ireeduid hamt amidrana geheer l goy sanagdaad bgam cn.
+          </p>
+
+          <p>
+            Zorison bolgondoo hureed, hussen bolgonoo biyluuleerei.
+          </p>
+
+          <p>
+            Yu c bsn davaad garah huctei baigaarai, davj garj chadahgui uydee
+            nadad heleed erhelj avaad huch avaarai meduu.
+          </p>
+
+          <p>
+            Hamtdaa yrisn bugdee biyluuleed shn amidrna shuu. ❤️
+          </p>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="primary" id="toGalleryBtn">Next</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 2 -->
+  <section class="screen" id="galleryScreen">
+    <div class="card">
+      <h1>Lag zaluugaar gallerygaa duurgechii</h1>
+
+      <img src="photo1.jfif" alt="Main photo" class="main-photo" id="mainPhoto">
+
+      <div class="thumb-grid">
+        <img src="photo1.jfif" alt="Photo 1" class="thumb active-thumb">
+        <img src="photo2.jfif" alt="Photo 2" class="thumb">
+        <img src="photo3.jfif" alt="Photo 3" class="thumb">
+        <img src="photo4.jfif" alt="Photo 4" class="thumb">
+      </div>
+
+      <div class="btn-row">
+        <button class="secondary" id="backToLetterBtn">Back</button>
+        <button class="primary" id="toGiftBtn">Next</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 3 -->
+  <section class="screen" id="giftScreen">
+    <div class="card">
+      <h1>Ci namaig icehgui unsej baigaa zurag hahaha 🎁</h1>
+      <p class="subtitle">Tap the gift box.</p>
+
+      <div class="gift-box" id="giftBox"></div>
+
+      <div class="gift-photo" id="giftPhoto">
+  <img src="photo5.jfif" alt="Surprise photo">
+</div>
+
+      <div class="btn-row">
+        <button class="secondary" id="backToGalleryBtn">Back</button>
+        <button class="primary" id="toQuestionBtn">Next</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 4 -->
+  <section class="screen" id="questionScreen">
+    <div class="card">
+      <h1>Tsarailag zaluu minii nz zaluu alban yosoor boloh uu?</h1>
+      <p class="subtitle">Altangerelee chi namaig tooh ymuu</p>
+      <img src="sticker.png" alt="Cute sticker" class="sticker">
+      
+      <div class="question-box" id="questionBox">
+        <button class="primary" id="yesBtn">Yes ❤️</button>
+        <button id="noBtn">No 💔</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREEN 5 -->
+  <section class="screen" id="finalScreen">
+    <div class="card final-card">
+      <h1>Nz ohinoo bolgosond bayrlalaa 💖</h1>
+      <img src="photo.png" alt="Final photo" class="final-photo">
+      <div class="final-text">
+        Minii bytshan zurh end dogdlood alj ugjiinshuu<br>
+      </div>
+      <img src="sticker.png" alt="Cute sticker" class="sticker">
+    </div>
+  </section>
+
+  <script>
+    function showScreen(screenId) {
+      document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+      });
+      document.getElementById(screenId).classList.add("active");
+    }
+
+    // Navigation
+    document.getElementById("toGalleryBtn").addEventListener("click", function () {
+      showScreen("galleryScreen");
+    });
+
+    document.getElementById("backToLetterBtn").addEventListener("click", function () {
+      showScreen("letterScreen");
+    });
+
+    document.getElementById("toGiftBtn").addEventListener("click", function () {
+      showScreen("giftScreen");
+    });
+
+    document.getElementById("backToGalleryBtn").addEventListener("click", function () {
+      showScreen("galleryScreen");
+    });
+
+    document.getElementById("toQuestionBtn").addEventListener("click", function () {
+      showScreen("questionScreen");
+    });
+    
+    const subtitleText = "Ene jijken ymiig bi n chamdaa zoriulj ih hicheej hiilee";
+    const typingSubtitle = document.getElementById("typingSubtitle");
+
+    let subtitleIndex = 0;
+
+    function typeSubtitle() {
+    if (subtitleIndex < subtitleText.length) {
+    typingSubtitle.textContent += subtitleText.charAt(subtitleIndex);
+    subtitleIndex++;
+    setTimeout(typeSubtitle, 45);
+  }
+}
+
+typeSubtitle();
+
+    // Gallery
+    const mainPhoto = document.getElementById("mainPhoto");
+    const thumbs = document.querySelectorAll(".thumb");
+
+    thumbs.forEach(function (thumb) {
+      thumb.addEventListener("click", function () {
+        mainPhoto.src = this.src;
+        thumbs.forEach(function (t) {
+          t.classList.remove("active-thumb");
+        });
+        this.classList.add("active-thumb");
+      });
+    });
+
+    // Gift
+  const giftBox = document.getElementById("giftBox");
+const giftPhoto = document.getElementById("giftPhoto");
+
+giftBox.addEventListener("click", function() {
+  giftBox.classList.toggle("open");
+  giftPhoto.classList.toggle("show");
+});
+
+    // No button movement
+    const noBtn = document.getElementById("noBtn");
+    const questionBox = document.getElementById("questionBox");
+
+    function moveNoButton() {
+      const boxRect = questionBox.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+
+      const maxX = boxRect.width - btnRect.width - 10;
+      const maxY = boxRect.height - btnRect.height - 10;
+
+      const newX = Math.max(10, Math.random() * maxX);
+      const newY = Math.max(10, Math.random() * maxY);
+
+      noBtn.style.left = newX + "px";
+      noBtn.style.top = newY + "px";
+    }
+
+    noBtn.addEventListener("mouseenter", moveNoButton);
+    noBtn.addEventListener("click", moveNoButton);
+
+    // Yes button
+    document.getElementById("yesBtn").addEventListener("click", function () {
+      showScreen("finalScreen");
+    });
+  </script>
+</body>
+</html>
